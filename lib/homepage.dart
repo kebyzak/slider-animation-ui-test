@@ -19,10 +19,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _yellowController = AnimationController(
-        duration: Duration(milliseconds: _value), vsync: this)
-      ..addListener(() {
-        setState(() {});
-      });
+        duration: Duration(milliseconds: _value), vsync: this);
 
     _greenController = AnimationController(
         duration: Duration(milliseconds: _value), vsync: this);
@@ -135,6 +132,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 thumbColor: Colors.black,
                 value: _value.toDouble(),
                 onChanged: (value) {
+                  _yellowController.duration =
+                      Duration(milliseconds: value.round());
+                  _greenController.duration =
+                      Duration(milliseconds: value.round());
+                  _blueController.duration =
+                      Duration(milliseconds: value.round());
                   _value = value.round();
                   setState(() {});
                 },
